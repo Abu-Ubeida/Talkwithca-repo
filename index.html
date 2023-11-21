@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <form action="">
+            <h3>GET In touch</h3>
+
+            <label for="Name">Name</label>
+            <input type="text" id="Name" placeholder=" enter Your Name">
+
+            <label for="Email">Email</label>
+            <input type="text" id="Email" placeholder=" enter your email">
+
+            <label for="Contact">Contact</label>
+            <input type="text" id="Contact" placeholder="enter your contact no">
+
+            <label for="Subject">Subject</label>
+            <input type="text" id="Subject" placeholder="enter your Subject">
+
+
+            <label for="message">message</label>
+            <textarea name="message" id="message" placeholder="how can we help you"></textarea>
+
+            <input type="button" value="button" onclick="send()">
+            <!-- <button type="submit" onclick="send()">send</button> -->
+
+        </form>
+    </div>
+
+
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        function send() {
+          var name = document.getElementById("Name").value;
+          var email = document.getElementById("Email").value;
+          var contact = document.getElementById("Contact").value;
+          var subject = document.getElementById("Subject").value;
+          var mess = document.getElementById("message").value;
+    
+          var body = "name : " + name + "<br/> Email: " + email + "<br/> Contact Number : " + contact + "<br/> Message" + mess;
+          // console.log(body);
+    
+    
+          Email.send({
+            Host: "smtp.elasticemail.com",
+            Username: "pbuponyou123@gmail.com",
+            Password: "3CB2545A834CFA06DFE68B53D6C327335B30",
+            To: 'pbuponyou123@gmail.com',
+            From: "pbuponyou123@gmail.com",
+            Subject: subject,
+            Body: body,
+          }).then(
+            message => {
+              if (message == 'OK') {
+                swal("Successful!", "Your data successfully received", "success");
+              }
+              else {
+                swal("something went wrong!", "Your data not received", "error");
+              }
+    
+            }
+          );
+        }
+    
+      </script>
+    
+    
+
+</body>
+
+</html>
